@@ -1,0 +1,119 @@
+#include <iostream>
+
+using namespace std;
+
+void resultsSay(int , int , int , int , int , int );
+
+
+//order of problem solving
+void studentDid(int steps, int k, int i)
+{
+    int k1 = i+1;
+    string move;
+    for(k = 1; k < steps+1; k++){
+        if (k == 1)
+        {
+            move = "st";
+        }
+        
+        else if(k == 2)
+        {
+            move = "nd";
+        }
+        
+        else if (k == 3)
+        {
+            move = "rd";
+        }
+        
+        
+        else if (k != 1 || 2 || 3)
+        {
+            
+            move = "th";
+            
+        }
+        
+        
+        cout << "The following will be prompts about how each student completed their testing game." <<endl;
+        
+        cout << "If the student " << k << move<< ": drew a diagram/illustration first D, underlined portions of the prompt enter U, asked for question to be read aloud enter V, wrote an equation to help solve the equation E, began writing a solution to the problem S, or did not answer the questions enter N." <<endl;
+        
+        char choice;
+        cin >> choice;
+        int d, u, v, s, n, e = 0;
+        switch(choice)
+        {
+            case 'D': cout << "You have selected diagram/illustration. Student is utilizing a visual style of learning on question. "  <<endl;
+                //int d;
+                d++;
+               //resultsSay(d, u, v, s, n, e);
+                break;
+                
+            case 'U': cout << "underlined portions of the prompt. Student is utilizing Reading/writing style of learning on question" <<endl;
+                //int u;
+                u++;
+                //resultsSay(d, u, v, s, n, e);
+                break;
+                
+            case 'V': cout << "Asked for question to be read aloud. Student is utilizing auditory style of learning on question." <<endl;
+                //int v;
+                v++;
+               // resultsSay(d, u, v, s, n, e);
+                break;
+                
+            case 'E': cout << "wrote equation to help solve the equation. Student is utilizing reading/writing style of learning on question." <<endl;
+                //int e;
+                e++;
+               // resultsSay(d, u, v, s, n, e);
+                break;
+                
+            case 'S': cout << "began writing a solution to the problem Student is utilizing reading/writing style of learning on question." <<endl;
+                //int s;
+                s++;
+               // resultsSay(d, u, v, s, n, e);
+                break;
+                
+            case 'N': cout << "did not answer the question on question." <<endl;
+                //int n;
+                n++;
+                cout << "Cannot diagnos without answer" <<endl;
+                //exit(0);
+                break;
+                
+            default: cout << "Did not enter a valid answer. Please Try Again." <<endl;
+                studentDid(steps, k, i);
+                //resultsSay(d, u, v, s, n, e);
+                break;
+                
+        }
+    }
+    
+    
+}
+
+
+
+int main()
+{
+    cout << "Welcome. In this application you will obtain a diagnostic report that will allow you to see how students learn." <<endl;
+    cout << "You will first administer the testing game. Observe how the students respond." <<endl;
+    cout << "The responses will classify the student as a visual, auditory, or Reading/writing learner." <<endl;
+    cout << "This application will allow you to better see how each student thinks. It will then allow you to see the best way for them to learn. " <<endl;
+    
+    int numQ = 0;
+    cout << "How many questions were on the exam?" <<endl;
+    cin >> numQ;
+    
+    for(int i = 0; i < numQ; i++)
+    {
+        cout << "For Question: " << i+1 <<endl;
+        cout << "How many steps did you take in question: " << i+1 << " ?" <<endl;
+        int steps;
+        cin >> steps;
+        
+        studentDid(steps, 0, i);
+    }
+    
+    return 0;
+}
